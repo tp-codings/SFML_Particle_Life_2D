@@ -254,6 +254,21 @@ int Engine::random(int range, int start)
 	return rand() %range +start;
 }
 
+float Engine::force(float r, float a)
+{
+	const float beta = 0.3f;
+	if (r < beta)
+	{
+		return r / beta - 1;
+	}
+	else if (beta < r && r < 1)
+	{
+		return a * (1 - abs(2 * r - 1 - beta) / (1 - beta));
+	}
+	else {
+		return 0.0f;
+	}
+}
 void Engine::interaction(std::vector<Particles*> particle1, std::vector<Particles*> particle2, float attraction)
 {	
 	for (int i = 0; i < particle1.size(); i++)
@@ -263,21 +278,26 @@ void Engine::interaction(std::vector<Particles*> particle1, std::vector<Particle
 		
 		for (int j = 0; j < particle2.size(); j++)
 		{
-			float dx = particle1[i]->getPos().x - particle2[j]->getPos().x;
-			float dy = particle1[i]->getPos().y - particle2[j]->getPos().y;
+			float dx = particle2[j]->getPos().x - particle1[i]->getPos().x;
+			float dy = particle2[j]->getPos().y - particle1[i]->getPos().y;
 			float distance = sqrt(dx * dx + dy * dy);
 
 			if (distance > 0 && distance < this->distanceMax)
 			{
-				fx += (dx / distance);
-				fy += (dy / distance);
+				const float f = this->force(distance / this->distanceMax, attraction);
+				fx += dx / distance * f;
+				fy += dy / distance * f;
 
 			}
 		}
-		particle1[i]->vx = (particle1[i]->vx + (fx*attraction))*this->velocity;
-		particle1[i]->vy = (particle1[i]->vy + (fy*attraction))*this->velocity;
-		particle1[i]->posX += particle1[i]->vx;
-		particle1[i]->posY += particle1[i]->vy;
+
+		fx *= this->distanceMax;
+		fy *= this->distanceMax;
+
+		particle1[i]->vx = particle1[i]->vx * 0.3f + fx*this->velocity * 0.2f;
+		particle1[i]->vy = particle1[i]->vy * 0.3f + fy*this->velocity * 0.2f;
+		particle1[i]->posX += particle1[i]->vx * this->velocity * 0.2f;
+		particle1[i]->posY += particle1[i]->vy * this->velocity * 0.2f;
 		if (particle1[i]->posX <= 400)
 		{
 			particle1[i]->vx *= -1;

@@ -58,6 +58,8 @@ private:
 	void updateParticles();
 	void updateSlider();
 
+	float force(float, float);
+
 	void render();
 	void renderGUI(RenderTarget* target);
 	void renderParticles(RenderTarget* target);
