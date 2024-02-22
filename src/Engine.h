@@ -51,6 +51,8 @@ private:
 	float velocity;
 	float distanceMax;
 
+	int amount;
+
 	void update();
 	void updateGUI();
 	void updateMousePosition();

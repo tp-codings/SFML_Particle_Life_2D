@@ -12,11 +12,11 @@ Engine::Engine()
 	this->initGUI();
 	this->initVariables();
 	this->initSlider();
-	this->yellow = this->create(700, Color::Yellow);
-	this->red = this->create(700, Color::Red);
-	this->green = this->create(700, Color::Green);
-	this->blue = this->create(700, Color::Blue);
-	this->white = this->create(700, Color::White);
+	this->yellow = this->create(this->amount, Color::Yellow);
+	this->red = this->create(this->amount, Color::Red);
+	this->green = this->create(this->amount, Color::Green);
+	this->blue = this->create(this->amount, Color::Blue);
+	this->white = this->create(this->amount, Color::White);
 }
 
 Engine::~Engine()
@@ -169,6 +169,7 @@ void Engine::initVariables()
 {
 	this->velocity = 0.f;
 	this->distanceMax = 0.f;
+	this->amount = 1200;
 }
 
 void Engine::initSlider()
