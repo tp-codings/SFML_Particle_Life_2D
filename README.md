@@ -1,6 +1,7 @@
 # Particle_Life_2D
 
 This was my first attempt to implement Particle Life based on [Tom Mohrs YouTube video](https://www.youtube.com/watch?v=p4YirERTVF0&t=202s).
+For my version in 3D [see here](https://github.com/tp-codings/Particle_Life_3D_V2).
 
 ## Project Overview
 
