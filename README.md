@@ -6,7 +6,7 @@ This was my first attempt to implement Particle Life based on [Tom Mohrs YouTube
 
 | Personal Rating | Year of Development | Languages | Tools | Type of Application |
 | --- | --- | --- | --- | --- |
-| ⭐️⭐️⭐️ (3/5) | 2023 | C++ | SFML | Simulation |
+| ⭐️⭐️⭐️ (3/5) | 2022 | C++ | SFML | Simulation |
 
 ## Features
 - 2D Particle Simulation
